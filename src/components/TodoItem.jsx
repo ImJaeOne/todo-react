@@ -67,7 +67,7 @@ const TodoItem = ({ todo, setTodos }) => {
             <TodoContent>{todo.content}</TodoContent>
             <ButtonContainer>
                 <DeleteButton onClick={() => handleDeleteBtn(todo.id)}>삭제하기</DeleteButton>
-                <UpdateButton $isDone={todo.isDone} onClick={() => handleUpdateBtn(todo.id)}>
+                <UpdateButton onClick={() => handleUpdateBtn(todo.id)}>
                     {todo.isDone ? '취소' : '완료'}
                 </UpdateButton>
             </ButtonContainer>
