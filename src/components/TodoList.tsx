@@ -30,7 +30,21 @@ const StSectionContent = styled.div`
     padding: 10px;
 `;
 
-const TodoList = ({ todos, setTodos }) => {
+interface Todo {
+    id: number;
+    title: string;
+    content: string;
+    isDone: boolean;
+}
+
+interface TodoListProps {
+    todos: Todo[];
+    setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+}
+
+
+
+const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
     const doneTodoLists = [...todos].filter((todo) => todo.isDone !== false);
     const notDoneTodoLists = [...todos].filter((todo) => todo.isDone === false);
     return (

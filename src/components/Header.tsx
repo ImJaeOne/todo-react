@@ -18,10 +18,10 @@ const StSpan = styled.span`
 `;
 const Header = () => {
     return (
-            <StNav>
-                <StSpan>My Todo List</StSpan>
-                <StSpan>React</StSpan>
-            </StNav>
+        <StNav>
+            <StSpan>My Todo List</StSpan>
+            <StSpan>React</StSpan>
+        </StNav>
     );
 };
 

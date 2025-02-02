@@ -9,8 +9,19 @@ import './App.css';
 const GlobalStyle = createGlobalStyle`
   ${reset}
 `;
+
+interface Todo {
+    id: number 
+    title: string;
+    content: string;
+    isDone: boolean;
+}
+
 function App() {
-    const [todos, setTodos] = useState(JSON.parse(localStorage.getItem('todos')) || []);
+    const [todos, setTodos] = useState<Todo[]>(() => {
+        const savedTodos = localStorage.getItem('todos');
+        return savedTodos ? JSON.parse(savedTodos) : [];
+    });
 
     useEffect(() => {
         localStorage.setItem('todos', JSON.stringify(todos));
