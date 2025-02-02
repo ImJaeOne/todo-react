@@ -39,20 +39,33 @@ const StButton = styled.button`
     }
 `;
 
-const initialData = { id: null, title: '', content: '', isDone: false };
-const TodoForm = ({ todos, setTodos }) => {
-    const [newTodo, setNewTodo] = useState(initialData);
+const initialData = { id: 0, title: '', content: '', isDone: false };
+
+interface Todo {
+    id: number ;
+    title: string;
+    content: string;
+    isDone: boolean;
+}
+
+interface TodoFormProps {
+    todos: Todo[];
+    setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+}
+
+const TodoForm: React.FC<TodoFormProps> = ({ todos, setTodos }) => {
+    const [newTodo, setNewTodo] = useState<Todo>(initialData);
 
     const resetForm = () => {
         setNewTodo(initialData);
     };
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target;
-        setNewTodo({ ...newTodo, id: new Date().getTime(), [id]: value });
+        setNewTodo({ ...newTodo, id: Date.now(), [id]: value });
     };
 
-    const handleAddBtn = (e) => {
+    const handleAddBtn = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (newTodo.title === '' || newTodo.content === '') {
             alert('모든 값을 기입해주세요.');

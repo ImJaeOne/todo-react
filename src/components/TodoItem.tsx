@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const TodoContainer = styled.div`
@@ -52,13 +51,27 @@ const UpdateButton = styled(Button)`
     border: 1px solid #4caf50;
 `;
 
-const TodoItem = ({ todo, setTodos }) => {
-    const handleUpdateBtn = (id) => {
-        setTodos((prev) => prev.map((todo) => (todo.id === id ? { ...todo, isDone: !todo.isDone } : todo)));
+interface Todo {
+    id: number;
+    title: string;
+    content: string;
+    isDone: boolean;
+}
+
+interface TodoItemProps {
+    todo: Todo;
+    setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+}
+
+const TodoItem: React.FC<TodoItemProps> = ({ todo, setTodos }) => {
+    const handleUpdateBtn = (id: number) => {
+        setTodos((prev) =>
+            prev.map((item) => (item.id === id ? { ...item, isDone: !item.isDone } : item))
+        );
     };
 
-    const handleDeleteBtn = (id) => {
-        setTodos((prev) => prev.filter((todo) => todo.id !== id));
+    const handleDeleteBtn = (id: number) => {
+        setTodos((prev) => prev.filter((item) => item.id !== id));
     };
 
     return (
